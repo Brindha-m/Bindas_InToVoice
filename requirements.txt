@@ -1,5 +1,5 @@
 streamlit
-yt-dlp==2025.03.31
+yt-dlp
 spleeter
 llvmlite==0.40.0
 pydub
