@@ -1,36 +1,36 @@
 import streamlit as st
 import os
 from pydub import AudioSegment
+import subprocess
 
 def download_audio_from_youtube(youtube_url, download_path):
     try:
         if not os.path.exists(download_path):
             os.makedirs(download_path)
         command = f'yt-dlp -o "{download_path}/%(title)s.%(ext)s" -x --audio-format mp3 "{youtube_url}"'
-        result = os.system(command)
-        if result == 0:
+        result = subprocess.run(command, shell=True)
+        if result.returncode == 0:
             st.success("Download completed!")
             for file in os.listdir(download_path):
                 if file.endswith(".mp3"):
                     return os.path.join(download_path, file)
         else:
-            st.error("Download failed!")
+            st.error(f"Download failed with return code {result.returncode}!")
             return None
     except Exception as e:
         st.error(f"An error occurred during download: {e}")
         return None
-
 
 def separate_audio(input_file, output_path):
     try:
         if not os.path.exists(output_path):
             os.makedirs(output_path)
         command = f'spleeter separate -p spleeter:5stems -o {output_path} "{input_file}"'
-        result = os.system(command)
-        if result == 0:
+        result = subprocess.run(command, shell=True)
+        if result.returncode == 0:
             st.success("Audio separation completed!")
         else:
-            st.error("Audio separation failed!")
+            st.error(f"Audio separation failed with return code {result.returncode}!")
     except Exception as e:
         st.error(f"An error occurred during separation: {e}")
 
@@ -44,7 +44,6 @@ def convert_wav_to_mp3(wav_path, mp3_path):
         st.error(f"An error occurred during conversion: {e}")
         return None
 
-
 st.title("YouTube Audio Separator")
 st.write("Enter a YouTube URL to download, separate, and play the audio stems.")
 
@@ -52,7 +51,6 @@ st.write("Enter a YouTube URL to download, separate, and play the audio stems.")
 youtube_url = st.text_input("YouTube URL", "https://music.youtube.com/watch?v=BNkIvh6qExw")
 download_path = "content"
 output_path = "output"
-
 
 if st.button("Process Audio"):
     downloaded_file = download_audio_from_youtube(youtube_url, download_path)
@@ -72,4 +70,3 @@ if st.button("Process Audio"):
                 st.audio(audio_file.read(), format="audio/mp3")
         else:
             st.error("Vocals WAV file not found!")
-
