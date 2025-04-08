@@ -4,3 +4,4 @@ spleeter
 llvmlite==0.40.0
 pydub
 numpy==2.2.4
+tornado>=6.0
