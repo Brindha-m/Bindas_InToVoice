@@ -1,6 +1,7 @@
 import streamlit as st
 import os
 from pydub import AudioSegment
+import ffmpeg  # Ensure this import is present
 import subprocess
 
 def download_audio_from_youtube(youtube_url, download_path):
