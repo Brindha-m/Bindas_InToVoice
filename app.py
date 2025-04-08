@@ -3,7 +3,6 @@ import os
 from pydub import AudioSegment
 import ffmpeg
 import subprocess
-import spleeter
 
 def download_audio_from_youtube(youtube_url, download_path):
     try:
@@ -16,7 +15,7 @@ def download_audio_from_youtube(youtube_url, download_path):
             for file in os.listdir(download_path):
                 if file.endswith(".mp3"):
                     # Replace spaces with underscores in the filename
-                    new_filename = file.replace(" ", "_")
+                    new_filename = file.replace(" ", "")
                     os.rename(os.path.join(download_path, file), os.path.join(download_path, new_filename))
                     return os.path.join(download_path, new_filename)
         else:
