@@ -3,3 +3,4 @@ yt-dlp==2025.03.31
 spleeter
 llvmlite==0.40.0
 pydub
+numpy==2.2.4
