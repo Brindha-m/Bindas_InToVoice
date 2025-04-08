@@ -5,4 +5,4 @@ llvmlite==0.40.0
 pydub
 setuptools
 tornado>=6.0
-ffmpeg-python
+ffmpeg
