@@ -3,6 +3,7 @@ import os
 from pydub import AudioSegment
 import ffmpeg
 import subprocess
+import spleeter
 
 def download_audio_from_youtube(youtube_url, download_path):
     try:
