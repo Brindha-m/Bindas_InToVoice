@@ -1,20 +1,23 @@
 import streamlit as st
 import os
 from pydub import AudioSegment
-import ffmpeg  # Ensure this import is present
+import ffmpeg
 import subprocess
 
 def download_audio_from_youtube(youtube_url, download_path):
     try:
         if not os.path.exists(download_path):
             os.makedirs(download_path)
-        command = f'yt-dlp -4 -o "{download_path}/%(title)s.%(ext)s" -x --audio-format mp3 "{youtube_url}"'
+        command = f'yt-dlp -o "{download_path}/%(title)s.%(ext)s" -x --audio-format mp3 "{youtube_url}"'
         result = subprocess.run(command, shell=True)
         if result.returncode == 0:
             st.success("Download completed!")
             for file in os.listdir(download_path):
                 if file.endswith(".mp3"):
-                    return os.path.join(download_path, file)
+                    # Replace spaces with underscores in the filename
+                    new_filename = file.replace(" ", "_")
+                    os.rename(os.path.join(download_path, file), os.path.join(download_path, new_filename))
+                    return os.path.join(download_path, new_filename)
         else:
             st.error(f"Download failed with return code {result.returncode}!")
             return None
