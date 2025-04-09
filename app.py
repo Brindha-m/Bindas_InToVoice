@@ -15,14 +15,13 @@ def separate_audio(audio):
         st.error(f"An error occurred during separation: {e}")
         return None, None
 
-# Streamlit app
+
 st.title("Demucs Music Source Separation (v4)")
 st.markdown("<p style='text-align: center'><a href='https://arxiv.org/abs/1911.13254' target='_blank'>Music Source Separation in the Waveform Domain</a> | <a href='https://github.com/facebookresearch/demucs' target='_blank'>Github Repo</a> | <a href='https://www.thafx.com' target='_blank'>//THAFX</a></p>", unsafe_allow_html=True)
 
-# Add Hugging Face's logo
+
 st.image("https://huggingface.co/front/assets/huggingface_logo.svg", width=200)
 
-# File uploader
 uploaded_file = st.file_uploader("Upload an audio file", type=["wav", "mp3"])
 
 if uploaded_file is not None:
