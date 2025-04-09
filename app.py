@@ -4,6 +4,7 @@ from pydub import AudioSegment
 import ffmpeg 
 import subprocess
 
+@st.cache_data
 def download_audio_from_youtube(youtube_url, download_path):
     try:
         if not os.path.exists(download_path):
@@ -22,6 +23,7 @@ def download_audio_from_youtube(youtube_url, download_path):
         st.error(f"An error occurred during download: {e}")
         return None
 
+@st.cache_data
 def separate_audio(input_file, output_path):
     try:
         if not os.path.exists(output_path):
@@ -35,6 +37,7 @@ def separate_audio(input_file, output_path):
     except Exception as e:
         st.error(f"An error occurred during separation: {e}")
 
+@st.cache_data
 def convert_wav_to_mp3(wav_path, mp3_path):
     try:
         sound = AudioSegment.from_wav(wav_path)
