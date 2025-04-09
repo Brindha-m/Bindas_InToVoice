@@ -1,7 +1,7 @@
 import streamlit as st
 import os
 from pydub import AudioSegment
-import ffmpeg  # Ensure this import is present
+import ffmpeg 
 import subprocess
 
 def download_audio_from_youtube(youtube_url, download_path):
@@ -49,7 +49,7 @@ st.title("YouTube Audio Separator")
 st.write("Enter a YouTube URL to download, separate, and play the audio stems.")
 
 # Input field from app
-youtube_url = st.text_input("YouTube URL", "https://music.youtube.com/watch?v=BNkIvh6qExw")
+youtube_url = st.text_input("YouTube URL", "https://music.youtube.com/watch?v=WvMAy6aMuRg")
 download_path = "content"
 output_path = "output"
 
