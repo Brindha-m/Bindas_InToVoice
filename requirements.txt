@@ -1,11 +1,11 @@
 streamlit
-#yt-dlp
+yt-dlp
 #spleeter
 #llvmlite==0.40.0
-#pydub
+pydub
 #setuptools
 #tornado>=6.0
-#ffmpeg-python
+ffmpeg-python
 
 git+https://github.com/facebookresearch/demucs#egg=demucs
 scipy
