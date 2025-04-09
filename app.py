@@ -26,7 +26,7 @@ def separate_audio(input_file, output_path):
     try:
         if not os.path.exists(output_path):
             os.makedirs(output_path)
-        command = f'spleeter separate -p spleeter:5stems -o {output_path} "{input_file}"'
+        command = f'spleeter separate -p spleeter:2stems -o {output_path} "{input_file}"'
         result = subprocess.run(command, shell=True)
         if result.returncode == 0:
             st.success("Audio separation completed!")
